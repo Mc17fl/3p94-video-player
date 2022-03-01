@@ -10,3 +10,6 @@ Example of features:
 - dark theme
 - ability to quickly add assests and video/audio sources
 - ability to easily move sources within the timeline
+
+
+Other information about the interface and features can be seen in README.pdf
