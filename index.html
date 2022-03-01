@@ -3,16 +3,16 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sortable/0.9.13/jquery-sortable-min.js"></script>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <link href="/css/draggable.css" rel="stylesheet">
+  <link href="3p94-video-player/css/draggable.css" rel="stylesheet">
   <!-- <link href="C:\Users\Matteo\Desktop\Year_3\WINTER\3p94\mc17fl.github.io-main\css\draggable.css" rel="stylesheet"> -->
 
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  <script src="/js/draggable_resizable.js"></script>
+  <script src="3p94-video-player/js/draggable_resizable.js"></script>
   <!-- <script src="C:\Users\Matteo\Desktop\Year_3\WINTER\3p94\mc17fl.github.io-main\js\draggable_resizable.js"></script> -->
 
 
-  <link rel="shortcut icon" href="/images/title_image.ico" />
+  <link rel="shortcut icon" href="3p94-video-player3p94-video-player/images/title_image.ico" />
   <!-- <link rel="shortcut icon" href="C:\Users\Matteo\Desktop\Year_3\WINTER\3p94\mc17fl.github.io-main\images\title_image.ico" /> -->
 
   <title>CPU Again: Phase 2</title>
@@ -116,7 +116,7 @@
 
               Timeline
             </div>
-            <img style="margin-bottom: 10px; margin-left: 7px;" src="/images/timeline.png" alt="">
+            <img style="margin-bottom: 10px; margin-left: 7px;" src="3p94-video-player/images/timeline.png" alt="">
 
             
             <div id="video-timeline">
@@ -217,17 +217,17 @@
            <div style="color:white; font-size: 20px;" class="settings-field">Shadows</div>
           </div>
           <div style="display:block;">
-            <img src="/images/colour_wheel.png" alt="">
+            <img src="3p94-video-player/images/colour_wheel.png" alt="">
           </div>
           <div style="color:white; font-size: 20px;" class="settings-field">Midtones</div>
 
           <div style="display:block;">
-            <img src="/images/colour_wheel.png" alt="">
+            <img src="3p94-video-player/images/colour_wheel.png" alt="">
           </div>
           <div style="color:white; font-size: 20px;" class="settings-field">Highlights</div>
 
           <div style="display:block;">
-            <img src="/images/colour_wheel.png" alt="">
+            <img src="3p94-video-player/images/colour_wheel.png" alt="">
           </div>
         </div>
 
@@ -443,9 +443,9 @@
       });
    
       function addAsset() {
-        let images = ["'/images/bread.jpg'", "'/images/buns.jpg'", "'/images/chicken.jpg'", "'/images/cookies.jpg'" ] 
-        // let images = ['C:/Users/Matteo/Desktop/Year_3/WINTER/3p94/mc17fl.github.io-main/images/bread.jpg', 'C:/Users/Matteo/Desktop/Year_3/WINTER/3p94/mc17fl.github.io-main/images/buns.jpg', 
-        // 'C:/Users/Matteo/Desktop/Year_3/WINTER/3p94/mc17fl.github.io-main/images/chicken.jpg', 'C:/Users/Matteo/Desktop/Year_3/WINTER/3p94/mc17fl.github.io-main/images/cookies.jpg' ] 
+        let images = ["'3p94-video-player/images/bread.jpg'", "'3p94-video-player/images/buns.jpg'", "'3p94-video-player/images/chicken.jpg'", "'3p94-video-player/images/cookies.jpg'" ] 
+        // let images = ['C:/Users/Matteo/Desktop/Year_3/WINTER/3p94/mc17fl.github.io-main3p94-video-player/images/bread.jpg', 'C:/Users/Matteo/Desktop/Year_3/WINTER/3p94/mc17fl.github.io-main3p94-video-player/images/buns.jpg', 
+        // 'C:/Users/Matteo/Desktop/Year_3/WINTER/3p94/mc17fl.github.io-main3p94-video-player/images/chicken.jpg', 'C:/Users/Matteo/Desktop/Year_3/WINTER/3p94/mc17fl.github.io-main3p94-video-player/images/cookies.jpg' ] 
 
         var index = Math.floor(Math.random() * 3);
         $("#assets-sortable").append('<div style="background-size: contain; background-image:url('+images[index]+');" class="disp"><div class="source-count">I</div><div class="delete-source"><i class="fas fa-window-close fa-lg"></i></div></div>'); 
