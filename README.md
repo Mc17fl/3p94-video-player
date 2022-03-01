@@ -1,4 +1,4 @@
-# mc17fl.github.io
+# Mock Video Player Interface for COSC 3p94 final project 
 Final Stage of 3P94 Group Assignment
 site can be reached at: https://mc17fl.github.io/3p94-video-player/
 
