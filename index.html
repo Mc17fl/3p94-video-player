@@ -3,17 +3,17 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sortable/0.9.13/jquery-sortable-min.js"></script>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <!-- <link href="/css/draggable.css" rel="stylesheet"> -->
-  <link href="C:\Users\Matteo\Desktop\Year_3\WINTER\3p94\mc17fl.github.io-main\css\draggable.css" rel="stylesheet">
+  <link href="/css/draggable.css" rel="stylesheet">
+  <!-- <link href="C:\Users\Matteo\Desktop\Year_3\WINTER\3p94\mc17fl.github.io-main\css\draggable.css" rel="stylesheet"> -->
 
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  <!-- <script src="/js/draggable_resizable.js"></script> -->
-  <script src="C:\Users\Matteo\Desktop\Year_3\WINTER\3p94\mc17fl.github.io-main\js\draggable_resizable.js"></script>
+  <script src="/js/draggable_resizable.js"></script>
+  <!-- <script src="C:\Users\Matteo\Desktop\Year_3\WINTER\3p94\mc17fl.github.io-main\js\draggable_resizable.js"></script> -->
 
 
-  <!-- <link rel="shortcut icon" href="/images/title_image.ico" /> -->
-  <link rel="shortcut icon" href="C:\Users\Matteo\Desktop\Year_3\WINTER\3p94\mc17fl.github.io-main\images\title_image.ico" />
+  <link rel="shortcut icon" href="/images/title_image.ico" />
+  <!-- <link rel="shortcut icon" href="C:\Users\Matteo\Desktop\Year_3\WINTER\3p94\mc17fl.github.io-main\images\title_image.ico" /> -->
 
   <title>CPU Again: Phase 2</title>
   <script>
@@ -105,24 +105,33 @@
       </div>
 
       
-      <div id="timeline-container" class="resizable draggable grid-item" contenteditable="true" style="display: table; width:940px;height:265px; position:absolute; margin-left:11px; margin-top:443px;">
+      <div id="timeline-container" class="resizable draggable grid-item" contenteditable="true" style=" width:940px;height:265px; position:absolute; margin-left:11px; margin-top:443px;">
 
         <div id="sources-container">
 
-            <div id="timeline-header" class="tab-title">Timeline</div>
+            <div id="timeline-header" class="tab-title">
+              <i style="font-size:21px; margin-right:7px;" class="fas fa-paste" title="Paste"></i>
+              <i style="font-size:21px; margin-right:7px;" class="fas fa-copy" title="Copy"></i>
+              <i style="font-size:21px; margin-right:7px;" class="fas fa-cut" title="Trim"></i>
 
-            <div style="color: white; margin: 10px 60px 10px 20px; background: #30343f; width: 40px;">Video</div> 
+              Timeline
+            </div>
+            <img style="margin-bottom: 10px; margin-left: 7px;" src="/images/timeline.png" alt="">
+
             
             <div id="video-timeline">
               <div id="video-sortable">
               </div>
             </div>
+            <div style="color: white; margin: 10px 60px 10px 20px; background: #30343f; width: 40px;">Video</div> 
 
-            <div style="color: white; margin: 10px 60px 10px 20px; background: #30343f; width: 40px;">Audio</div>
             <div id="audio-timeline">
               <div id="audio-sortable">
               </div>
             </div>
+            <div style="color: white; margin: 10px 60px 10px 20px; background: #30343f; width: 40px;">Audio</div>
+
+
         
         </div>
 
@@ -141,7 +150,7 @@
 
 
     <div id="settingsDiv" class="inside-container">
-      <div id="settings-header" class="tab-title" style="background-color: rgb(48, 52, 63); color: rgb(255, 255, 255);">Settings</div>
+      <div id="settings-header" class="tab-title" style="background-color: rgb(48, 52, 63); color: rgb(255, 255, 255); margin: 10px 10px 0px 10px; height: 34px;">Settings</div>
       <div id="settings-tab-container">
 
         <div class="settings-tab" id="crop-setting">
@@ -174,6 +183,30 @@
             <input type="range" min="1" max="60" value="24" class="attribute-slider" id="myRange-framerate" data-attribute-type="#frame-speed">
               <p style="color: white;">Frames Per Second: <input id="frame-speed" class="slider-input-field" data-attribute-type="#myRange-framerate" value="24"></p>
           </div>
+
+          <div style="display:block; margin-bottom: 10px;">
+            <div style="color:white; margin-right:10px !important; font-size: 20px;" class="project-label settings-field">Effects</div>
+          </div>
+
+          <div style="display:block; margin-bottom: 10px;">
+            <button class="effect-button settings-field">Twirl</button>
+            <button class="effect-button settings-field">Ripple</button>
+          </div>
+          <div style="display:block; margin-bottom: 10px;">
+            <div></div>
+
+            <button class="effect-button settings-field">Wave</button>
+            <button class="effect-button settings-field">Cylinder</button>
+            <button class="effect-button settings-field">Ellipse</button>
+
+          </div>
+          <div style="display:block; margin-bottom: 10px;">
+            <div></div>
+
+            <button class="effect-button settings-field">Pan</button>
+            <button class="effect-button settings-field">Zoom</button>
+            <button class="effect-button settings-field">Grid Mosiac</button>
+          </div>
         </div>
 
         <div class="settings-tab" id="colour-correction-setting">
@@ -184,17 +217,17 @@
            <div style="color:white; font-size: 20px;" class="settings-field">Shadows</div>
           </div>
           <div style="display:block;">
-            <img src="C:/Users/Matteo/Desktop/Year_3/WINTER/3p94/mc17fl.github.io-main/images/colour_wheel.png" alt="">
+            <img src="/images/colour_wheel.png" alt="">
           </div>
           <div style="color:white; font-size: 20px;" class="settings-field">Midtones</div>
 
           <div style="display:block;">
-            <img src="C:/Users/Matteo/Desktop/Year_3/WINTER/3p94/mc17fl.github.io-main/images/colour_wheel.png" alt="">
+            <img src="/images/colour_wheel.png" alt="">
           </div>
           <div style="color:white; font-size: 20px;" class="settings-field">Highlights</div>
 
           <div style="display:block;">
-            <img src="C:/Users/Matteo/Desktop/Year_3/WINTER/3p94/mc17fl.github.io-main/images/colour_wheel.png" alt="">
+            <img src="/images/colour_wheel.png" alt="">
           </div>
         </div>
 
@@ -272,8 +305,8 @@
 
 </div>
   
-  <!-- <script src="/js/draggable_resizable.js"></script> -->
-    <script src="C:\Users\Matteo\Desktop\Year_3\WINTER\3p94\mc17fl.github.io-main\js\draggable_resizable.js"></script>
+  <script src="/js/draggable_resizable.js"></script>
+    <!-- <script src="C:\Users\Matteo\Desktop\Year_3\WINTER\3p94\mc17fl.github.io-main\js\draggable_resizable.js"></script> -->
 
 
 
@@ -410,9 +443,9 @@
       });
    
       function addAsset() {
-        // let images = ["'/images/bread.jpg'", "'/images/buns.jpg'", "'/images/chicken.jpg'", "'/images/cookies.jpg'" ] 
-        let images = ['C:/Users/Matteo/Desktop/Year_3/WINTER/3p94/mc17fl.github.io-main/images/bread.jpg', 'C:/Users/Matteo/Desktop/Year_3/WINTER/3p94/mc17fl.github.io-main/images/buns.jpg', 
-        'C:/Users/Matteo/Desktop/Year_3/WINTER/3p94/mc17fl.github.io-main/images/chicken.jpg', 'C:/Users/Matteo/Desktop/Year_3/WINTER/3p94/mc17fl.github.io-main/images/cookies.jpg' ] 
+        let images = ["'/images/bread.jpg'", "'/images/buns.jpg'", "'/images/chicken.jpg'", "'/images/cookies.jpg'" ] 
+        // let images = ['C:/Users/Matteo/Desktop/Year_3/WINTER/3p94/mc17fl.github.io-main/images/bread.jpg', 'C:/Users/Matteo/Desktop/Year_3/WINTER/3p94/mc17fl.github.io-main/images/buns.jpg', 
+        // 'C:/Users/Matteo/Desktop/Year_3/WINTER/3p94/mc17fl.github.io-main/images/chicken.jpg', 'C:/Users/Matteo/Desktop/Year_3/WINTER/3p94/mc17fl.github.io-main/images/cookies.jpg' ] 
 
         var index = Math.floor(Math.random() * 3);
         $("#assets-sortable").append('<div style="background-size: contain; background-image:url('+images[index]+');" class="disp"><div class="source-count">I</div><div class="delete-source"><i class="fas fa-window-close fa-lg"></i></div></div>'); 
