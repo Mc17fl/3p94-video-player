@@ -1,0 +1,557 @@
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sortable/0.9.13/jquery-sortable-min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <!-- <link href="/css/draggable.css" rel="stylesheet"> -->
+  <link href="C:\Users\Matteo\Desktop\Year_3\WINTER\3p94\mc17fl.github.io-main\css\draggable.css" rel="stylesheet">
+
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <!-- <script src="/js/draggable_resizable.js"></script> -->
+  <script src="C:\Users\Matteo\Desktop\Year_3\WINTER\3p94\mc17fl.github.io-main\js\draggable_resizable.js"></script>
+
+
+  <!-- <link rel="shortcut icon" href="/images/title_image.ico" /> -->
+  <link rel="shortcut icon" href="C:\Users\Matteo\Desktop\Year_3\WINTER\3p94\mc17fl.github.io-main\images\title_image.ico" />
+
+  <title>CPU Again: Phase 2</title>
+  <script>
+    function change_input_fieldsize(ifonchange){
+        var input_field = $('#project-name');
+        var input_field_count = input_field.val().length;
+        if( input_field_count > 0 ){
+          var width = String((8 * input_field.val().length + 20) + "px")
+        }else if(ifonchange){
+          var width = String((8 * 16 + 20) + "px")
+          input_field.val("Untitled Project")
+        }
+        $('#project-name').css('width', width)
+      }
+
+
+      function change_colour_wheel_color( id, text_field_id ){
+        $(id).css('background-color', $(text_field_id).val() )
+      }
+
+      function added_text(){
+        alert("Text Added!");
+      }
+  </script>
+</head>
+
+<div id="wrapperDiv" class="wrapperDiv">
+  
+  <div class="tools">
+
+    <div title="File" style="float:left; margin-left:4px;" class="tools-dropdown">
+      <i style="background-color: darkblue; width:32px; cursor: default;" class="droptool fas fa-file-alt fa-2x"><div class="icon-label">File</div></i>
+      <div style="width: 64;" class="dropdown-content">
+        <i id="new-project" title="New Project (ctrl+n)" class="dropdown-tool fas fa-plus-square fa-2x"><div class="icon-label">New Project</div></i>
+        <i id="open-project" title="Open Project (ctrl+o)" class="dropdown-tool fas fa-folder-open fa-2x"><div class="icon-label">Open Project</div></i>
+        <i id="save-project" title="Save Project (ctrl+s)" class="dropdown-tool export fas fa-save fa-2x"><div class="icon-label">Save Project</div></i>
+        <i href="" id="export-video" title="Export Video (ctrl+p)" class="dropdown-tool export fas fa-download fa-2x"><div class="icon-label">Export Video</div></i>
+      </div>
+    </div>
+
+    <div style="float: left;" title="Add Source" class="tools-dropdown">
+      <i style="cursor: default;" class="droptool fas fa-2x fas fa-plus-circle"><div class="icon-label">Add Source</div></i>
+      <div class="dropdown-content">
+        <i id="blank-source" title="Blank Source (alt+n)" class="dropdown-tool fas fa-file fa-2x"><div class="icon-label">Blank Source</div></i>
+        <input id="fileselector" type="file" name="name" style="display: none;"/>
+        <i id="upload-video" title="Upload Video (alt+v)" class="upload-source dropdown-tool fas fa-file-video fa-2x"><div class="icon-label">Upload Video</div></i>
+        <i id="upload-audio" title="Upload Audio (alt+a)" class="upload-source dropdown-tool fas fa-file-audio fa-2x"><div class="icon-label">Upload Audio</div></i>
+        <i id="upload-asset" title="Upload Asset (alt+q)" class="dropdown-tool fas fa-upload fa-2x"><div class="icon-label">Upload Asset</div></i>
+      </div>
+    </div>
+    <div style="float: right;" class="tools-dropdown">
+      <i style="background-color:orange; color:white; text-align:center;" title="Help" class="dark-mode droptool far fa-question-circle fa-2x"><div class="icon-label">Help</div></i>
+    </div>
+    <div style="float: right;" class="tools-dropdown">
+      <i style=" text-shadow: 0 0 4px #000;" id="toggle-css-mode" title="Toggle Light Mode (ctrl+e)" class="dark-mode droptool fas fa-sun fa-2x"><div style="width:112px;  text-shadow: 0 0 4px #000;" id="css-theme-icon" class="icon-label">Toggle Light Mode</div></i>
+    </div>
+
+
+    <div class="tools-dropdown">
+      <i style="cursor: default;" title="Tools" class="droptool fas fa-tools fa-2x"><div class="icon-label">Tools</div></i>
+      <div class="dropdown-content">
+        <i id="video-editor" title="Video Editor (alt+u)" class="settings-tool dropdown-tool fas fa-video fa-2x" data-icon-type="Video Editor"><div class="icon-label">Video Editor</div></i>
+        <i id="audio-editor" title="Audio Editor (alt+e)" class="settings-tool dropdown-tool fas fa-headphones-alt fa-2x" data-icon-type="Audio Editor"><div class="icon-label">Audio Editor</div></i>
+        <i id="colour-correction" title="Colour Correction (alt+y)" class="settings-tool dropdown-tool fas fa-palette fa-2x" data-icon-type="Colour Correction"><div class="icon-label">Colour Correction</div></i>
+        <i id="Text" title="Text (alt+t)" class="settings-tool dropdown-tool fas fa-italic fa-2x" data-icon-type="Text"><div class="icon-label">Text</div></i>
+      </div>
+    </div>
+    <div style="text-align: center; margin: auto; position: relative; height: 25px; margin-bottom: 0px;">
+      <input type="text" id="project-name" name="project-name" onkeyup="change_input_fieldsize(false);" onchange="change_input_fieldsize(true)">
+    </div>
+    
+  </div>
+  
+
+  <div style="display: inline-table;">
+    <div style="display: table-cell;" id="innerDiv" class="innerDiv inside-container">
+      <div id="preview-container" class="resizable draggable grid-item" contenteditable="true" style="width:600px;height:380px; position:absolute;color:white; margin-left:11px; margin-top:11px;">
+        <div id="play-button-container">
+          <div id="preview" class="tab-title">Preview</div>
+          <div  id="play-button"><i class="play-button fas fa-play-circle fa-10x"></i></div>
+        </div>
+        <div id="preview-toolbar" class="preview-toolbar">
+          <i class="preview-toolbar-icon fas fa-history fa-lg" title="30s Rewind"></i>
+          <i class="preview-toolbar-icon fas fa-fast-backward fa-lg"  title="Rewind"></i>
+          <i class="preview-toolbar-icon fas fa-play fa-lg"  title="Play"></i>
+          <i class="preview-toolbar-icon fas fa-fast-forward fa-lg"  title="Fast Forward"></i>
+          <i class="preview-toolbar-icon fas fa-stopwatch fa-lg" title="Change Frame Rate"></i>
+        </div>
+      </div>
+
+      
+      <div id="timeline-container" class="resizable draggable grid-item" contenteditable="true" style="display: table; width:940px;height:265px; position:absolute; margin-left:11px; margin-top:443px;">
+
+        <div id="sources-container">
+
+            <div id="timeline-header" class="tab-title">Timeline</div>
+
+            <div style="color: white; margin: 10px 60px 10px 20px; background: #30343f; width: 40px;">Video</div> 
+            
+            <div id="video-timeline">
+              <div id="video-sortable">
+              </div>
+            </div>
+
+            <div style="color: white; margin: 10px 60px 10px 20px; background: #30343f; width: 40px;">Audio</div>
+            <div id="audio-timeline">
+              <div id="audio-sortable">
+              </div>
+            </div>
+        
+        </div>
+
+      </div>
+
+      <div id="assets-container" class="resizable draggable grid-item" contenteditable="true" style="width:330px;height:420px;position:absolute; margin-left: 620px; margin-top: 11px;">
+        <div id="assets-list">
+          <div id="assets" class="tab-title">Assets</div>
+          <div id="assets-sortable">
+          </div>
+
+        </div>
+        
+      </div>
+    </div>
+
+
+    <div id="settingsDiv" class="inside-container">
+      <div id="settings-header" class="tab-title" style="background-color: rgb(48, 52, 63); color: rgb(255, 255, 255);">Settings</div>
+      <div id="settings-tab-container">
+
+        <div class="settings-tab" id="crop-setting">
+          
+        </div>
+        <div class="settings-tab" id="video-editor-setting">
+          <div style="display:block;">
+            <div style="color:white; margin-right:10px !important; font-size: 20px;" class="settings-field">Trim/Crop</div>
+          </div>
+          <div style="display:block; text-align: center;">
+            <input style="margin-right: 5px !important; margin-top: 5px !important;" class="settings-field" id="from-duration" name="from-duration" placeholder="From (seconds)" >
+            <input style="margin-right: 5px !important; margin-top: 5px !important;" class="settings-field" id="to-duration" name="to-duration" placeholder="To (seconds)" >
+          </div>
+
+          <div style="display:block;">
+            <div style="color:white; margin-right:10px !important; font-size: 20px;" class="settings-field">Output Size</div>
+          </div>
+          <div style="display:block; text-align: center;">
+            <button class="effect-button settings-field">1:1</button>
+            <button class="effect-button settings-field">9:16</button>
+            <button class="effect-button settings-field">16:9</button>
+            <button class="effect-button settings-field">4:5</button>
+            <button class="effect-button settings-field">5:4</button>
+            <button class="effect-button settings-field">Customize Size</button>
+          </div>
+          <div style="display:block;">
+            <div style="color:white; margin-right:10px !important; font-size: 20px;" class="settings-field">Frame Rate</div>
+          </div>
+          <div style="display:block; text-align: center;">
+            <input type="range" min="1" max="60" value="24" class="attribute-slider" id="myRange-framerate" data-attribute-type="#frame-speed">
+              <p style="color: white;">Frames Per Second: <input id="frame-speed" class="slider-input-field" data-attribute-type="#myRange-framerate" value="24"></p>
+          </div>
+        </div>
+
+        <div class="settings-tab" id="colour-correction-setting">
+          <div style="color:white; margin-right:10px !important; font-size: 20px;" class="settings-field">Change Scene Colour</div>
+          <input style="width:142px; margin-right:0px !important;" type="text" class="project-label settings-field" id="colour-correction-wheel" name="colour-correction-wheel" placeholder="#FFFFFFF" onchange="change_colour_wheel_color('#colour_correction-wheel', '#colour-correction-wheel')">
+          <div id="colour_correction-wheel" style="border: 1px black;margin-left:10px; vertical-align: bottom; border-radius: 50%; background-color: white; width:20px; height:20px;" class="project-label settings-field"></div>
+          <div style="display:block;">
+           <div style="color:white; font-size: 20px;" class="settings-field">Shadows</div>
+          </div>
+          <div style="display:block;">
+            <img src="C:/Users/Matteo/Desktop/Year_3/WINTER/3p94/mc17fl.github.io-main/images/colour_wheel.png" alt="">
+          </div>
+          <div style="color:white; font-size: 20px;" class="settings-field">Midtones</div>
+
+          <div style="display:block;">
+            <img src="C:/Users/Matteo/Desktop/Year_3/WINTER/3p94/mc17fl.github.io-main/images/colour_wheel.png" alt="">
+          </div>
+          <div style="color:white; font-size: 20px;" class="settings-field">Highlights</div>
+
+          <div style="display:block;">
+            <img src="C:/Users/Matteo/Desktop/Year_3/WINTER/3p94/mc17fl.github.io-main/images/colour_wheel.png" alt="">
+          </div>
+        </div>
+
+        <div class="settings-tab" id="audio-editor-setting">
+          <div class="attribute-container settings-field">
+            <input type="range" min="0" max="200" value="100" class="attribute-slider" id="myRange-volume" data-attribute-type="#volume-level">
+            <p style="color: white;">Volume: <input id="volume-level" class="slider-input-field" data-attribute-type="#myRange-volume" value="100"></p>
+          </div>
+          <div class="attribute-container settings-field">
+            <input type="range" min="0.25" max="4" value="1" class="attribute-slider" step="0.25" id="myRange-speed" data-attribute-type="#speed-level">
+            <p style="color: white;">Speed: <input id="speed-level" class="slider-input-field" data-attribute-type="#myRange-speed" value="1x"></p>
+          </div>
+
+          
+          <div style="display:block;">
+            <div style="color:white; margin-right:10px !important; font-size: 20px;" class="project-label settings-field">Effects</div>
+            <button class="effect-button settings-field">None</button>
+            <button class="effect-button settings-field">Fade</button>
+          </div>
+          <div style="display:block;">
+            <div></div>
+            <div style="color:white; margin-right:10px !important; font-size: 20px;" class="project-label settings-field">Fade Speed</div>
+
+            <button class="effect-button settings-field">Slow</button>
+            <button class="effect-button settings-field">Default</button>
+            <button class="effect-button settings-field">Fast</button>
+          </div>
+          <div style="display:block;">
+            <div></div>
+            <div style="color:white; margin-right:10px !important; font-size: 20px;" class="project-label settings-field">Apply To</div>
+
+            <button class="effect-button settings-field">Intro</button>
+            <button class="effect-button settings-field">Outro</button>
+            <button class="effect-button settings-field">Both</button>
+          </div>
+        </div>
+
+
+        <div style="text-align: center;" class="settings-tab" id="Text-setting">
+          <textarea style="outline: black auto 1px; text-align: center;" type="text" class="project-label" id="text-insert" name="text-insert" placeholder="Add text" rows="4" cols="100"></textarea>
+          <div style="display:block;">
+            <select style="width:142px;" class="settings-field" name="font" id="text-font">
+              <option value="Arial">Arial</option>
+              <option value="Times New Roman">Times New Roman</option>
+              <option value="Comic Sans">Comic Sans</option>
+              <option value="Georgia">Georgia</option>
+              <option value="View All">View All</option>
+            </select>
+            <input style="width:142px;" type="text" class="project-label settings-field" id="text-size" name="text-size" placeholder="Size">
+          </div>
+          <div style="display:block;">
+            <i style="color:white;" class="settings-field fas fa-bold fa-2x"></i>
+            <i style="color:white;" class="settings-field fas fa-italic fa-2x"></i>
+            <i style="color:white;" class="settings-field fas fa-underline fa-2x"></i>
+          </div>
+
+          <div style="display:block;">
+            <i style="color:white;" class="settings-field fas fa-align-left fa-2x"></i>
+            <i style="color:white;" class="settings-field fas fa-align-center fa-2x"></i>
+            <i style="color:white;" class="settings-field fas fa-align-right fa-2x"></i>
+          </div>
+          <div style="display:block;">
+            <input style="width:142px; margin-right:0px !important;" type="text" class="project-label settings-field" id="text-color" name="text-color" placeholder="#FFFFFFF" onchange="change_colour_wheel_color('#text_color', '#text-color')">
+            <div id="text_color" style="border: 1px black;margin-left:10px; vertical-align: bottom; border-radius: 50%; background-color: white; width:20px; height:20px;" class="project-label settings-field"></div>
+          </div>
+          <button style="background-color: #4CAF50;"class="create-button project-label settings-field" onclick="added_text()">Add Text</button>
+        </div>
+        
+      </div>
+    </div>
+
+
+    
+  </div>
+
+</div>
+  
+  <!-- <script src="/js/draggable_resizable.js"></script> -->
+    <script src="C:\Users\Matteo\Desktop\Year_3\WINTER\3p94\mc17fl.github.io-main\js\draggable_resizable.js"></script>
+
+
+
+  <script>
+    $(document).ready(function() {
+      $("#project-name").val('Untitled Project')
+      $('#new-project').click(function() { 
+        location.reload();
+      });
+
+
+      const downloadBlobAsFile = (function closure_shell() {
+          const a = document.createElement("a");
+          return function downloadBlobAsFile(blob, filename, type) {
+            if( filename != ''){
+              filename += type;
+              const object_URL = URL.createObjectURL(blob);
+              a.href = object_URL;
+              a.download = filename;
+              a.click();
+              URL.revokeObjectURL(object_URL);
+            }else{
+              alert('Please name your project.')
+            }
+          };
+      })();
+
+      document.getElementById("save-project").addEventListener("click", _ => {
+          downloadBlobAsFile(new Blob(
+              [document.getElementById("project-name").value],
+              {type: "plain/*"}
+          ), document.getElementById("project-name").value, '_project');
+      });
+
+      document.getElementById("export-video").addEventListener("click", _ => {
+          downloadBlobAsFile(new Blob(
+              [document.getElementById("project-name").value],
+              {type: "video/mp4"}
+          ), document.getElementById("project-name").value, '_video');
+      });
+      
+      var video_count = Math.floor(Math.random() * 6) + 2;
+      var audio_count = Math.floor(Math.random() * 6) + 2;
+      
+
+
+
+      $('.draggable').mousedown(function() { $('.grid-item').each(function(){ $(this).css({'z-index': '1'}); }); $(this).css({'z-index': '2'});});
+
+      $("#video-sortable").sortable({ revert: true }).disableSelection(); 
+      $("#audio-sortable").sortable({ revert: true }).disableSelection(); 
+      $("#assets-sortable").sortable({ revert: true }).disableSelection(); 
+
+      var editable_content = $(".grid-item").children();
+      editable_content.each(function(){
+          $(this).attr('contenteditable','false');
+      });
+
+      for (let index = 1; index < video_count; index++) {
+        $("#video-sortable").append('<div class="disp-preview disp source"><div class="source-count">V'+index+'</div><div class="delete-source"><i class="fas fa-window-close fa-lg"></i></div></div>'); 
+      }
+
+      for (let index = 1; index < audio_count; index++) {
+        $("#audio-sortable").append('<div class="disp-preview disp source"><div class="source-count">A'+index+'</div><div class="delete-source"><i class="fas fa-window-close fa-lg"></i></div></div>'); 
+      }
+      
+      $('#blank-source').click(function() { 
+        $("#video-sortable").append('<div class="disp source"><div class="source-count">V'+video_count+'</div><div class="delete-source"><i class="fas fa-window-close fa-lg"></i></div></div>'); 
+        // $('#play-button').css('visibility', '');
+        video_count++;
+      });
+
+      $('.upload-source').click(function(event) { 
+        var source_type = (this.id).split('-')[1];
+        $("#fileselector").trigger("click");
+        
+        $("#fileselector").unbind().change(function(e){ 
+          var fileselector = document.getElementById('fileselector');
+          if( typeof fileselector.files[0] != 'undefined'  ){
+            if( source_type == "video" ){
+              $("#assets-sortable").append('<div class="disp source"><div class="source-count">V'+video_count+'</div><div class="delete-source"><i class="fas fa-window-close fa-lg"></i></div><div class="scene-name">'+fileselector.files[0].name+'</div></div>'); 
+              // $('#play-button').css('visibility', '');
+              video_count++;
+            }else if( source_type == "audio" ){
+              $("#assets-sortable").append('<div class="disp source"><div class="source-count">A'+audio_count+'</div><div class="delete-source"><i class="fas fa-window-close fa-lg"></i></div><div class="scene-name">'+fileselector.files[0].name+'</div></div>'); 
+              // $('#play-button').css('visibility', '');
+              audio_count++;
+            }
+          }
+        });
+
+      });
+
+
+      $('#open-project').click(function(event) { 
+
+        $("#fileselector").trigger("click");
+        
+        $("#fileselector").unbind().change(function(e){ 
+          var fileselector = document.getElementById('fileselector');
+          if( typeof fileselector.files[0] != 'undefined'  ){
+            var name = (fileselector.files[0].name).split('.')[0]
+            $('#project-name').val(name);
+
+            var random_1 = Math.floor(Math.random() * 7);
+            var random_2 = Math.floor(Math.random() * 7);
+            var random_3 = Math.floor(Math.random() * 10);
+            video_count = 1;
+            audio_count = 1;
+            $('#play-button').css('visibility', 'hidden');
+
+            $('.disp').each(function(){
+              $(this).remove();
+            });
+            for (let index = 0; index < random_1; index++) {
+              $("#video-sortable").append('<div class="disp source"><div class="source-count">V'+video_count+'</div><div class="delete-source"><i class="fas fa-window-close fa-lg"></i></div></div>'); 
+              video_count++;
+            }
+            for (let index = 0; index < random_2; index++) {
+              $("#audio-sortable").append('<div class="disp source"><div class="source-count">A'+audio_count+'</div><div class="delete-source"><i class="fas fa-window-close fa-lg"></i></div></div>'); 
+              audio_count++;
+            }
+            for (let index = 0; index < random_3; index++) {
+              addAsset();
+            }
+            if( $('.source').length > 1 ){
+              $('#play-button').css('visibility', 'visible');
+            }
+
+          }
+        });
+        change_input_fieldsize()
+
+      });
+   
+      function addAsset() {
+        // let images = ["'/images/bread.jpg'", "'/images/buns.jpg'", "'/images/chicken.jpg'", "'/images/cookies.jpg'" ] 
+        let images = ['C:/Users/Matteo/Desktop/Year_3/WINTER/3p94/mc17fl.github.io-main/images/bread.jpg', 'C:/Users/Matteo/Desktop/Year_3/WINTER/3p94/mc17fl.github.io-main/images/buns.jpg', 
+        'C:/Users/Matteo/Desktop/Year_3/WINTER/3p94/mc17fl.github.io-main/images/chicken.jpg', 'C:/Users/Matteo/Desktop/Year_3/WINTER/3p94/mc17fl.github.io-main/images/cookies.jpg' ] 
+
+        var index = Math.floor(Math.random() * 3);
+        $("#assets-sortable").append('<div style="background-size: contain; background-image:url('+images[index]+');" class="disp"><div class="source-count">I</div><div class="delete-source"><i class="fas fa-window-close fa-lg"></i></div></div>'); 
+      }
+      $('#upload-asset').click(addAsset);
+
+      
+      $(document).on("click", '.delete-source', function () {
+        if(confirm("Delete this Source?")){ 
+          $(this).parent().remove();
+          if( $('.source').length < 1 ){
+            $('#play-button').css('visibility', 'hidden');
+          }
+        }
+      });
+      
+      
+      $('.settings-tool').click(function(event) { 
+        console.log($(this).attr("data-icon-type"))
+        var settings_tab_id = "#" + this.id;
+        var settings_tab_list = $('#settings-tab-container').children()
+        settings_tab_list.each(function () {
+          $(this).removeClass('current-settings-tab')
+        });
+        $('#settings-header').text($(this).attr("data-icon-type"))
+        $(settings_tab_id + "-setting").toggleClass('current-settings-tab')
+
+      });
+
+      
+       
+
+
+      $('#toggle-css-mode').click(function(event) { 
+        var dom_elements = [ 'body', '.inside-container', '.resizable', '.tab-title', '.project-label', '#preview-toolbar', '#project-name', '#toggle-css-mode' ];
+
+        dom_elements.forEach(element =>{
+          var dom_element = $(element);
+         
+          if( this.classList.contains('dark-mode') ){
+            switch(element) {
+              case "body":
+                dom_element.css('background-color', 'white')
+                break;
+              case ".inside-container":
+                dom_element.css('background-color', 'grey');
+                dom_element.css('border-color', '#63666e');
+
+                break;
+              case ".resizable":
+                dom_element.css('background-color', '#83858d')
+                break;
+              case ".tab-title":
+                dom_element.css('background-color', 'white')
+                dom_element.css('color', 'black')
+                break;
+              case ".project-label":
+                dom_element.css('color', 'black')
+                break;
+              case "#preview-toolbar":
+                dom_element.css('background-color', 'rgb(255, 255, 255)')
+                dom_element.css('color', 'black')
+                break;
+              case "#project-name":
+                dom_element.css('color', 'black')
+                break;
+              case "#toggle-css-mode":
+                dom_element.css('background-color', 'black')
+                dom_element.toggleClass('fa-sun').toggleClass('fa-moon')
+                break;
+            }
+          }else{
+            switch(element) {
+              case "body":
+                dom_element.css('background-color', '#30343f')
+                break;
+              case ".inside-container":
+                dom_element.css('background-color', 'black');
+                dom_element.css('border-color', 'black');
+
+                break;
+              case ".resizable":
+                dom_element.css('background-color', '#252935')
+                break;
+              case ".tab-title":
+                dom_element.css('background-color', '#30343f')
+                dom_element.css('color', 'white')
+                break;
+              case ".project-label":
+                dom_element.css('color', 'white')
+                break;
+              case "#preview-toolbar":
+                dom_element.css('background-color', '#30343f')
+                dom_element.css('color', 'white')
+                break;
+              case "#project-name":
+                dom_element.css('color', 'white')
+                break;
+              case "#toggle-css-mode":
+                dom_element.css('background-color', 'yellow')
+                dom_element.toggleClass('fa-sun').toggleClass('fa-moon')
+                break;
+            }
+          }
+        });
+        $('#text-insert').toggleClass('white-color');
+
+        var tooltip_title = '';
+        var title = '';
+        if( this.classList.contains('dark-mode') ){
+          tooltip_title = 'Dark Mode (ctrl+e)';
+          title = 'Toggle Dark Mode';
+        }else{
+          tooltip_title = 'Light Mode (ctrl+e)';
+          title = 'Toggle Light Mode';
+        }
+        $('#css-theme-icon').text(title);
+        $('#toggle-css-mode').toggleClass('dark-mode').attr('title', tooltip_title);
+      });
+
+
+      $(document).on('change', ".attribute-slider", function() {
+        var slider = $(this)
+        var output = $($(this).attr("data-attribute-type"))
+        if( this.id == "myRange-speed" ){
+          output.val(slider.val()+"x")
+        }else{
+          output.val(slider.val())
+        }
+      });
+
+
+      $('.slider-input-field').change( function (){
+        var slider = $(this)
+        var output = $($(this).attr("data-attribute-type"))
+        output.val(slider.val())
+      });
+
+    });
+
+
+  </script>
